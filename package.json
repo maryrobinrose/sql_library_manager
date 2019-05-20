@@ -1,0 +1,29 @@
+{
+  "name": "sql_library_manager-v1",
+  "version": "1.0.0",
+  "description": "##### _A dynamic website using JavaScript, Node.js, Express, Pug, and the SQL ORM Sequelize._",
+  "main": "index.js",
+  "dependencies": {
+    "express": "^4.17.0",
+    "pug": "^2.0.3",
+    "sequelize": "^5.8.6",
+    "sqlite3": "^4.0.8",
+    "sequelize-cli": "^5.4.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "node ./bin/www",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/maryrobinrose/sql_library_manager.git"
+  },
+  "keywords": [],
+  "author": "Mary Robin Rose",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/maryrobinrose/sql_library_manager/issues"
+  },
+  "homepage": "https://github.com/maryrobinrose/sql_library_manager#readme"
+}
