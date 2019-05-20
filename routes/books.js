@@ -60,19 +60,6 @@ router.get("/:id", function(req, res, next){
    });
 });
 
-/* Edit book form. */
-router.get("/:id/edit", function(req, res, next){
-  Book.findById(req.params.id).then(function(book){
-    if(book) {
-      res.render("books/edit", {book: book, title: "Edit Book"});
-    } else {
-      res.send(404);
-    }
-  }).catch(function(error){
-      res.send(500, error);
-   });
-});
-
 /* PUT update book. */
 router.put("/:id", function(req, res, next){
   Book.findById(req.params.id).then(function(book){
