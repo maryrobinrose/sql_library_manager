@@ -2,12 +2,6 @@ var express = require('express');
 var router = express.Router();
 var Book = require("../models").Book;
 
-
-/*
--->>post /books/:id/delete - Deletes a book. Careful, this can’t be undone. It can be helpful to create a new “test” book to test deleting.*/
-
-
-
 /* GET books listing. */
 router.get('/', function(req, res, next) {
   Book.findAll({order: [["Year", "DESC"]]}).then(function(books){
