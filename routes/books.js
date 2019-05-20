@@ -2,6 +2,20 @@ var express = require('express');
 var router = express.Router();
 var Book = require("../models").Book;
 
+/*
+
+/ - get
+/books - get
+/books/new - get
+/books/new - post
+/books/:id - get
+/books/:id - post
+/books/:id/delete - post
+
+*/
+
+/* / - get */
+
 /* GET books listing. */
 router.get('/', function(req, res, next) {
   Book.findAll({order: [["Year", "DESC"]]}).then(function(books){
@@ -10,6 +24,8 @@ router.get('/', function(req, res, next) {
       res.send(500, error);
    });
 });
+
+/**/
 
 /* Create a new book form. */
 router.get('/new', function(req, res, next) {
@@ -52,6 +68,29 @@ router.get("/:id/edit", function(req, res, next){
     } else {
       res.send(404);
     }
+  }).catch(function(error){
+      res.send(500, error);
+   });
+});
+
+/* PUT update book. */
+router.put("/:id", function(req, res, next){
+  Book.findById(req.params.id).then(function(book){
+    if(book) {
+      return book.update(req.body);
+    } else {
+      res.send(404);
+    }
+  }).then(function(book){
+    res.redirect("/books/" + article.id);
+  }).catch(function(error){
+      if(error.name === "SequelizeValidationError") {
+        var book = Book.build(req.body);
+        book.id = req.params.id;
+        res.render("books/edit", {books: book, errors: error.errors, title: "Edit Book"})
+      } else {
+        throw error;
+      }
   }).catch(function(error){
       res.send(500, error);
    });
