@@ -4,12 +4,6 @@ var Book = require("../models").Book;
 
 
 /*
--->>get / - Home route should redirect to the /books route.
--->>get /books - Shows the full list of books.
--->>get /books/new - Shows the create new book form.
--->>post /books/new - Posts a new book to the database.
--->>get /books/:id - Shows book detail form.
--->>post /books/:id - Updates book info in the database.
 -->>post /books/:id/delete - Deletes a book. Careful, this can’t be undone. It can be helpful to create a new “test” book to test deleting.*/
 
 
@@ -23,8 +17,13 @@ router.get('/', function(req, res, next) {
    });
 });
 
+/* Create a new book form. */
+router.get('/new', function(req, res, next) {
+  res.render("books/new", {book: {}, title: "New Book"});
+});
+
 /* POST create book. */
-router.post('/', function(req, res, next) {
+router.post('/new', function(req, res, next) {
   Book.create(req.body).then(function(book) {
     res.redirect("/books/" + book.id);
   }).catch(function(error){
@@ -38,7 +37,41 @@ router.post('/', function(req, res, next) {
    });
 ;});
 
-/* Create a new book form. */
-router.get('/new', function(req, res, next) {
-  res.render("books/new", {book: {}, title: "New Book"});
+/* GET individual book. */
+router.get("/:id", function(req, res, next){
+  Book.findById(req.params.id).then(function(book){
+    if(book) {
+      res.render("books/show", {article: book, title: book.title});
+    } else {
+      res.send(404);
+    }
+  }).catch(function(error){
+      res.send(500, error);
+   });
+});
+
+/* Edit book form. */
+router.get("/:id/edit", function(req, res, next){
+  Book.findById(req.params.id).then(function(book){
+    if(book) {
+      res.render("books/edit", {book: book, title: "Edit Book"});
+    } else {
+      res.send(404);
+    }
+  }).catch(function(error){
+      res.send(500, error);
+   });
+});
+
+/* Delete book form. */
+router.get("/:id/delete", function(req, res, next){
+  Book.findById(req.params.id).then(function(book){
+    if(book) {
+      res.render("books/delete", {book: book, title: "Delete Book"});
+    } else {
+      res.send(404);
+    }
+  }).catch(function(error){
+      res.send(500, error);
+   });
 });
