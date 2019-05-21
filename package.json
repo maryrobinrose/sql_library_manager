@@ -2,7 +2,7 @@
   "name": "sql_library_manager-v1",
   "version": "1.0.0",
   "description": "##### _A dynamic website using JavaScript, Node.js, Express, Pug, and the SQL ORM Sequelize._",
-  "main": "index.js",
+  "main": "app.js",
   "dependencies": {
     "express": "^4.17.0",
     "pug": "^2.0.3",
@@ -12,8 +12,8 @@
   },
   "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node app.js"
+    "start": "node app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
 },
   "repository": {
     "type": "git",
