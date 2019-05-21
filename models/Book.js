@@ -2,7 +2,7 @@
 var dateFormat = require('dateformat');
 
 module.exports = function(sequelize, DataTypes) {
-  var Article = sequelize.define('Article', {
+  var Book = sequelize.define('Book', {
     title: {
       type: DataTypes.STRING,
       validate: {

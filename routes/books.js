@@ -2,20 +2,6 @@ var express = require('express');
 var router = express.Router();
 var Book = require("../models").Book;
 
-/*
-
-/ - get
-/books - get
-/books/new - get
-/books/new - post
-/books/:id - get
-/books/:id - post
-/books/:id/delete - post
-
-*/
-
-/* / - get */
-
 /* GET books listing. */
 router.get('/', function(req, res, next) {
   Book.findAll({order: [["Year", "DESC"]]}).then(function(books){
@@ -24,8 +10,6 @@ router.get('/', function(req, res, next) {
       res.send(500, error);
    });
 });
-
-/**/
 
 /* Create a new book form. */
 router.get('/new', function(req, res, next) {
