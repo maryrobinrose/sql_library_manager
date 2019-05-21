@@ -2,9 +2,9 @@ extends ../layout
 
 block content
   h1 Books
-  p Listing all book
+  p Listing all books
   p
-    a(href="/books/new") Create New Book
+    a.button(href="/books/new") Create New Book
 
   each book in books
     h2= book.title
