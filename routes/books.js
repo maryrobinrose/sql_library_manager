@@ -1,6 +1,8 @@
 var express = require('express');
 var router = express.Router();
 var Book = require("../models").Book;
+const Sequelize = require('sequelize');
+const Op = Sequelize.Op;
 
 /* GET books listing. */
 router.get('/', function(req, res, next) {
@@ -79,3 +81,5 @@ router.get("/:id/delete", function(req, res, next){
       res.send(500, error);
    });
 });
+
+module.exports = router;
