@@ -3,9 +3,7 @@ extends ../layout
 block content
   h1= title
 
-  include errors
-
-  form(action="/book", method="post")
+  form(action="/books", method="post")
 
     p
       label(for='title') Title
