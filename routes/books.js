@@ -35,7 +35,7 @@ router.post('/new', function(req, res, next) {
 
 /* GET individual book. */
 router.get("/:id", function(req, res, next){
-  Book.findById(req.params.id).then(function(book){
+  Book.findByPk(req.params.id).then(function(book){
     if(book) {
       res.render("books/show", {article: book, title: book.title});
     } else {
@@ -48,7 +48,7 @@ router.get("/:id", function(req, res, next){
 
 /* PUT update book. */
 router.put("/:id", function(req, res, next){
-  Book.findById(req.params.id).then(function(book){
+  Book.findByPk(req.params.id).then(function(book){
     if(book) {
       return book.update(req.body);
     } else {
@@ -71,7 +71,7 @@ router.put("/:id", function(req, res, next){
 
 /* Delete book form. */
 router.get("/:id/delete", function(req, res, next){
-  Book.findById(req.params.id).then(function(book){
+  Book.findByPk(req.params.id).then(function(book){
     if(book) {
       res.render("books/delete", {book: book, title: "Delete Book"});
     } else {
