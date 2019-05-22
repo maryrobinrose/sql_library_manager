@@ -37,7 +37,7 @@ router.post('/new', function(req, res, next) {
 router.get("/:id", function(req, res, next){
   Book.findByPk(req.params.id).then(function(book){
     if(book) {
-      res.render("books/update-book", {article: book, title: book.title});
+      res.render("books/update-book", {book: book, title: book.title});
     } else {
       res.send(404);
     }
@@ -55,7 +55,7 @@ router.put("/:id", function(req, res, next){
       res.send(404);
     }
   }).then(function(book){
-    res.redirect("/books/" + article.id);
+    res.redirect("/books/" + book.id);
   }).catch(function(error){
       if(error.name === "SequelizeValidationError") {
         var book = Book.build(req.body);
