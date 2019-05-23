@@ -69,14 +69,16 @@ router.put("/:id", function(req, res, next){
    });
 });
 
-/* Delete book form. */
-router.get("/:id/delete", function(req, res, next){
+/* Delete individual book. */
+router.delete("/:id", function(req, res, next){
   Book.findByPk(req.params.id).then(function(book){
     if(book) {
-      res.render("books/delete", {book: book, title: "Delete Book"});
+      return book.destroy();
     } else {
       res.send(404);
     }
+  }).then(function(){
+      res.redirect("/books");
   }).catch(function(error){
       res.send(500, error);
    });
