@@ -3,6 +3,7 @@ extends ../layout
 block content
   h1= title
 
+  include ./errors.pug
   form(action="/books", method="post")
 
     p
