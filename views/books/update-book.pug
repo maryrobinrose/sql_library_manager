@@ -4,7 +4,7 @@ block content
     h1 Update Book
 
     include ./errors.pug
-    form
+    form(action="/books/" + book.id + "?_method=PUT", method="post")
       p
         label(for='title') Title
         input(id='title', name='title', type='text', value=book.title)
