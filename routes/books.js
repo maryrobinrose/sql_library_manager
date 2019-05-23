@@ -19,7 +19,7 @@ router.get('/new', function(req, res, next) {
 });
 
 /* POST create book. */
-router.post('/new', function(req, res, next) {
+router.post('/', function(req, res, next) {
   Book.create(req.body).then(function(book) {
     res.redirect("/books/" + book.id);
   }).catch(function(error){
@@ -31,7 +31,7 @@ router.post('/new', function(req, res, next) {
   }).catch(function(error){
       res.send(500, error);
    });
-;});
+});
 
 /* GET individual book. */
 router.get("/:id", function(req, res, next){
