@@ -39,7 +39,8 @@ router.get("/:id", function(req, res, next){
     if(book) {
       res.render("books/update-book", {book: book, title: book.title});
     } else {
-      res.send(404);
+      const err = new Error('Book Not Found');
+        res.render("error", { error: err });
     }
   }).catch(function(error){
       res.send(500, error);
