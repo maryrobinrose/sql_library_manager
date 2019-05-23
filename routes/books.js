@@ -61,7 +61,7 @@ router.put("/:id", function(req, res, next){
       if(error.name === "SequelizeValidationError") {
         var book = Book.build(req.body);
         book.id = req.params.id;
-        res.render("books/edit", {books: book, errors: error.errors, title: "Edit Book"})
+        res.render("books/update-book", {books: book, errors: error.errors, title: "Update Book"})
       } else {
         throw error;
       }
