@@ -55,13 +55,14 @@ router.put("/:id", function(req, res, next){
     } else {
       res.send(404);
     }
+    //Updated book
   }).then(function(book){
     res.redirect("/books/" + book.id);
   }).catch(function(error){
       if(error.name === "SequelizeValidationError") {
         var book = Book.build(req.body);
         book.id = req.params.id;
-        res.render("books/update-book", {books: book, errors: error.errors, title: "Update Book"})
+        res.render("books/update-book", {book: book, errors: error.errors, title: "Update Book"})
       } else {
         throw error;
       }
